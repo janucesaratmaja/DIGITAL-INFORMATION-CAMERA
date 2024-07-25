@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ff6200; /* Warna latar belakang jika gambar tidak terlihat atau belum dimuat */
+    padding: 20px;
+    background-image: url('path/to/your/image.jpg'); /* Ganti 'path/to/your/image.jpg' dengan path gambar Anda */
+    background-size: cover; /* Mengatur gambar agar selalu mengisi latar belakang */
+    background-position: center; /* Mengatur posisi gambar agar selalu terpusat */
+}
+
+.container {
+    max-width: 600px;
+    background-color: rgba(78, 0, 233, 0.9); /* Memberikan sedikit transparansi untuk kontainer */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(177, 24, 24, 0.1);
+    margin: auto;
+}

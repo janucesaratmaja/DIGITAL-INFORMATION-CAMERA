@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kritik Dan Saran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type=text], input[type=email], input[type=tel], textarea, input[type=date], input[type=number] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var isValid = true;
+            var inputs = document.getElementsByTagName("input");
+            var textareas = document.getElementsByTagName("textarea");
+
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].hasAttribute("required") && inputs[i].value.trim() === "") {
+                    inputs[i].classList.add("error");
+                    isValid = false;
+                } else {
+                    inputs[i].classList.remove("error");
+                }
+            }
+
+            for (var j = 0; j < textareas.length; j++) {
+                if (textareas[j].hasAttribute("required") && textareas[j].value.trim() === "") {
+                    textareas[j].classList.add("error");
+                    isValid = false;
+                } else {
+                    textareas[j].classList.remove("error");
+                }
+            }
+
+            // Additional check for payment option
+            var codCheckbox = document.getElementById("cod");
+            var ambilDiTempatCheckbox = document.getElementById("ambil_di_tempat");
+            var ovoCheckbox = document.getElementById("ovo");
+            var danaCheckbox = document.getElementById("dana");
+            var briCheckbox = document.getElementById("bri");
+
+            if (!codCheckbox.checked && !ambilDiTempatCheckbox.checked && !ovoCheckbox.checked && !danaCheckbox.checked && !briCheckbox.checked) {
+                alert("Anda harus memilih salah satu metode pembayaran.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="emailSend(); reset(); return false;">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap anda">
+            </div>
+            <div class="form-group">
+                <label for="email"> Alamat Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Contoh:ahmadsahroni@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="kamera">Kritik dan Saran</label>
+                <textarea id="kamera" name="kamera" required placeholder=""></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kirim">
+            </div>
+        </form>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script src="mailform.js"></script>
+</body>
+</html>
